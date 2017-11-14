@@ -1,0 +1,19 @@
+训练分类器模型
+
+input=/home/hadoop/DataSencise/bdci2017/BDCI2017-360/data/train/train_all.tsv
+lr=0.1
+epoch=100
+dim=200
+model_name=clf_sk_v1
+vec=/home/hadoop/DataSencise/bdci2017/BDCI2017-360/model/vec_skipgram.vec
+./fasttext supervised -input $input -output $model_name -pretrainedVectors $vec -lr $lr -epoch $epoch -wordNgrams 3 -dim $dim  
+ 
+预测
+model_name=clf_sk_v1
+predict=/home/hadoop/DataSencise/bdci2017/BDCI2017-360/data/test/test_all.tsv
+submit=/home/hadoop/DataSencise/bdci2017/BDCI2017-360/data/test/submit_v1.txt
+./fasttext predict $model_name $predict > $submit
+
+
+
+
